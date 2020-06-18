@@ -51,6 +51,25 @@ class LinkedList:
         self.head = self.head.next_node
         return head_value
 
+    def remove_tail(self):
+        # if list is empty, do nothing
+        if not self.head:
+            return None
+        # if list only has one element, set head and tail to None
+        if self.head.next_node is None:
+            head_value = self.head.value
+            self.head = None
+            self.tail = None
+            return head_value
+        # otherwise we have more elements in the list
+        current_node = self.head
+        previous_node = current_node
+        while current_node.next_node != None:
+            previous_node = current_node
+            current_node = current_node.next_node
+        previous_node.next_node = None
+        return current_node.value
+
     def contains(self, value):
         if self.head is None:
             return False
@@ -81,7 +100,6 @@ class LinkedList:
                 largest = current_node.value
             current_node = current_node.next_node
         return largest
-
 
 # linked_list = LinkedList()
 
