@@ -24,21 +24,22 @@ class Queue:
 
     # returns the number of elements in the queue
     def __len__(self):
-        current_node = self.storage.head
-        self.size = 0
-        while current_node:
-            self.size += 1
-            current_node = current_node.next_node
         return self.size
 
     # adds an element to the back of the queue
     def enqueue(self, value):
+        # add the new value, to the tail of our list
+        self.size += 1
         self.storage.add_to_tail(value)
 
     # removes and returns the element at the front of the queue
     def dequeue(self):
-        if self.__len__() > 0:
-            return self.storage.remove_head()
+        if self.size == 0:
+            return None
+        # remove the value from the head of our list
+        self.size -= 1
+        value = self.storage.remove_head()
+        return value
 
 
 """
@@ -51,14 +52,20 @@ class Queue:
 
     # returns the number of elements in the queue
     def __len__(self):
-        return len(self.storage)
+        return self.size
 
     # adds an element to the back of the queue
     def enqueue(self, value):
+        # add the new value, to the tail of our list
+        self.size += 1
         self.storage.append(value)
 
     # removes and returns the element at the front of the queue
     def dequeue(self):
-        if len(self.storage) > 0:
-            return self.storage.pop(0)
+        if self.size == 0:
+            return None
+        # remove the value from the head of our list
+        self.size -= 1
+        value = self.storage.pop(0)
+        return value
 """
