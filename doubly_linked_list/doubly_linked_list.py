@@ -105,21 +105,42 @@ class DoublyLinkedList:
 
     # Removes the input node from its current spot in the List and inserts it as the new head node of the List.
     def move_to_front(self, node):
-        pass
+        # if node is the head, do nothing
+        if node == self.head:
+            return None
+        # if node is the tail, remove tail
+        if node == self.tail:
+            self.remove_from_tail()
+        # sever ties around the referenced node
+        else:
+            previous_node = node.prev
+            next_node = node.next
+            previous_node.next = next_node
+            next_node.prev = previous_node
+            # account for length added in add_to_head
+            self.length -= 1
+        # add the node to the head
+        self.add_to_head(node.value)
 
     # Removes the input node from its current spot in the List and inserts it as the new tail node of the List.
     def move_to_end(self, node):
-        pass
+        # if node is the tail, do nothing
+        if node == self.tail:
+            return None
+        # if node is the head, remove head
+        if node == self.head:
+            self.remove_from_head()
+        # sever ties around the referenced node
+        else:
+            next_node = node.next
+            previous_node = node.prev
+            previous_node.next = next_node
+            next_node.prev = previous_node
+            # account for length added in add_to_tail
+            self.length -= 1
+        # add the node to the head
+        self.add_to_tail(node.value)
 
     # Returns the highest value currently in the list
     def get_max(self):
         pass
-
-
-doubly_linked_list = DoublyLinkedList()
-doubly_linked_list.add_to_tail(1)
-print(doubly_linked_list.tail.value)
-doubly_linked_list.add_to_tail(2)
-print(doubly_linked_list.tail.value)
-doubly_linked_list.add_to_tail(3)
-print(doubly_linked_list.tail.value)
