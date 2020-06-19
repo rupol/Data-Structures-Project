@@ -107,10 +107,7 @@ class DoublyLinkedList:
             self.remove_from_tail()
         # sever ties around the referenced node
         else:
-            previous_node = node.prev
-            next_node = node.next
-            previous_node.next = next_node
-            next_node.prev = previous_node
+            node.delete()
             # account for length added in add_to_head
             self.length -= 1
         # add the node to the head
@@ -126,10 +123,7 @@ class DoublyLinkedList:
             self.remove_from_head()
         # sever ties around the referenced node
         else:
-            next_node = node.next
-            previous_node = node.prev
-            previous_node.next = next_node
-            next_node.prev = previous_node
+            node.delete()
             # account for length added in add_to_tail
             self.length -= 1
         # add the node to the head
