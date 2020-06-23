@@ -19,19 +19,31 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
-        # take the current value of our node (self.value)
-        # compare to the new value we want to insert
+        new_node = BSTNode(value)
+        # if BST is empty
+        if self.value is None:
+            self.value = new_node
 
-        # if new value <= self.value
-        # if self.left is already taken by a node
-        # make that node call insert
-        # set the left child to the new node with the new value
+        # take the current value of our node (self.value) and compare to the new value we want to insert
+        # if new value < self.value
+        if value < self.value:
+            # if self.left is empty, set left to the value
+            if self.left is None:
+                self.left = new_node
+            # if self.left is already taken by a node
+            else:
+                # make that node call insert
+                self.left.insert(value)
 
         # if new value >= self.value
-        # if self.right is already taken by a node
-        # make that node call insert
-        # set the right child to the new node with the new value
+        else:
+            # if self.right is empty, set right to the value
+            if self.right is None:
+                self.right = new_node
+            # if self.right is already taken by a node
+            else:
+                # make that node call insert
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -40,14 +52,14 @@ class BSTNode:
         if self.value == target:
             return True
         found = False
-        if self.value < target:
+        if target < self.value:
             # check left subtree
             # if you can't go left, return false
             if self.left is None:
                 return False
             # if there's a node, make that node call contains
             found = self.left.contains(target)
-        if self.value > target:
+        if target > self.value:
             # check right subtree
             # if you can't go right, return false
             if self.right is None:
