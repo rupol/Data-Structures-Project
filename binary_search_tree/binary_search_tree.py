@@ -70,9 +70,15 @@ class BSTNode:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        current_node = self
+        # while a node exists to the right, move down the tree to the right
+        while(current_node.right):
+            current_node = current_node.right
+        # the max is the furthest right node
+        return current_node.value
 
     # Call the function `fn` on the value of each node
+
     def for_each(self, fn):
         pass
 
